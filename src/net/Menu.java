@@ -3,6 +3,8 @@ package net;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.swing.JOptionPane;
 
@@ -19,14 +21,13 @@ public class Menu {
             """;
 
     public static int mostrarMenu() {
-        String opcionMenu = JOptionPane.showInputDialog(null, MENU , "Menu de restaurantes Salesianos", 1);
+        String opcionMenu = JOptionPane.showInputDialog(null, MENU, "Menu de restaurantes Salesianos", 1);
         return Integer.parseInt(opcionMenu);
 
     }
 
     public static void anadirRestaurante() {
 
-        
         String nuevoNombreRestaurante = JOptionPane.showInputDialog("Introduce el nombre del restaurante");
         String nuevaLocalizacionRestaurante = JOptionPane.showInputDialog("Introduce la localización del restaurante");
         String nuevoHorarioRestaurante = JOptionPane
@@ -60,13 +61,12 @@ public class Menu {
     }
 
     public static void mostrarRestaurantes() {
-        Comparator<Restaurante> comparadorPorPuntuacion = (r1, r2) ->
-            Double.compare(r2.getPuntuacion(), r1.getPuntuacion());
-            Collections.sort(listaRestaurantes, comparadorPorPuntuacion);
+        Stream<Restaurante> streamOrdenado = listaRestaurantes.stream()
+                .sorted(Comparator.comparing(Restaurante::getPuntuacion).reversed());
         String infoRestaurantes = "";
-        for (int i = 0; i < listaRestaurantes.size(); i++) {
-            infoRestaurantes += i + " " + listaRestaurantes.get(i).getNombre() + " " +  listaRestaurantes.get(i).getLocalizacion()
-            + " " + listaRestaurantes.get(i).getHorario() + " " + listaRestaurantes.get(i).getPuntuacion() + "\n";
+        ArrayList<Restaurante> arrayListOrdenado = new ArrayList<Restaurante>(streamOrdenado.collect(Collectors.toList()));
+        for (int i = 0; i < arrayListOrdenado.size(); i++) {
+            infoRestaurantes += i + " " + arrayListOrdenado.get(i).getInfo();
         }
         JOptionPane.showInputDialog(infoRestaurantes);
     }
