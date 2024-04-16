@@ -1,5 +1,31 @@
+
+import net.Menu;
+import net.restaurantes.Restaurante;
+
 public class App {
+
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        do {
+            int opcionMenu = Menu.mostrarMenu();
+
+            switch (opcionMenu) {
+                case 1:
+                    Menu.anadirRestaurante();
+                    break;
+                case 2:
+                    Menu.editarRestaurante();
+                    break;
+                case 3:
+                    Menu.mostrarRestaurantes();
+                    break;
+                case 4:
+                    Menu.eliminarRestaurante();
+                    break;
+                case 0:
+                    return;
+                default:
+                    break;
+            }
+        } while (true);
     }
 }

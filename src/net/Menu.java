@@ -3,6 +3,7 @@ package net;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.stream.Stream;
 
 import javax.swing.JOptionPane;
 
@@ -60,13 +61,14 @@ public class Menu {
     }
 
     public static void mostrarRestaurantes() {
+        Stream<Restaurante> streamOrdenado = listaRestaurantes.stream().sorted(Comparator.comparing(Restaurante::getPuntuacion));
+        System.out.println(streamOrdenado);
         Comparator<Restaurante> comparadorPorPuntuacion = (r1, r2) ->
             Double.compare(r2.getPuntuacion(), r1.getPuntuacion());
             Collections.sort(listaRestaurantes, comparadorPorPuntuacion);
         String infoRestaurantes = "";
         for (int i = 0; i < listaRestaurantes.size(); i++) {
-            infoRestaurantes += i + " " + listaRestaurantes.get(i).getNombre() + " " +  listaRestaurantes.get(i).getLocalizacion()
-            + " " + listaRestaurantes.get(i).getHorario() + " " + listaRestaurantes.get(i).getPuntuacion() + "\n";
+            infoRestaurantes += i + " " + listaRestaurantes.get(i).getInfo();
         }
         JOptionPane.showInputDialog(infoRestaurantes);
     }
