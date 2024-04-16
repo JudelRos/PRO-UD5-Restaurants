@@ -1,6 +1,8 @@
 package net;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JOptionPane;
 
@@ -13,7 +15,7 @@ public class Menu {
                 2.- Editar restaurante
                 3.- Mostrar restaurantes
                 4.- Eliminar restaurante
-                Q.- Salir del programa
+                0.- Salir del programa
             """;
 
     public static int mostrarMenu() {
@@ -24,6 +26,7 @@ public class Menu {
 
     public static void anadirRestaurante() {
 
+        
         String nuevoNombreRestaurante = JOptionPane.showInputDialog("Introduce el nombre del restaurante");
         String nuevaLocalizacionRestaurante = JOptionPane.showInputDialog("Introduce la localización del restaurante");
         String nuevoHorarioRestaurante = JOptionPane
@@ -37,10 +40,10 @@ public class Menu {
 
     }
 
-    public static void editarRestaurante(int index) {
+    public static void editarRestaurante() {
         mostrarRestaurantes();
         String indexString = JOptionPane.showInputDialog("Cual es el nº del restaurante que quieres modificar?");
-        index = Integer.parseInt(indexString);
+        int index = Integer.parseInt(indexString);
         String nuevoNombreRestaurante = JOptionPane.showInputDialog("Introduce el nuevo nombre del restaurante");
         String nuevaLocalizacionRestaurante = JOptionPane
                 .showInputDialog("Introduce la nueva localización del restaurante");
@@ -57,16 +60,21 @@ public class Menu {
     }
 
     public static void mostrarRestaurantes() {
+        Comparator<Restaurante> comparadorPorPuntuacion = (r1, r2) ->
+            Double.compare(r2.getPuntuacion(), r1.getPuntuacion());
+            Collections.sort(listaRestaurantes, comparadorPorPuntuacion);
+        String infoRestaurantes = "";
         for (int i = 0; i < listaRestaurantes.size(); i++) {
-            JOptionPane.showInputDialog(i + listaRestaurantes.get(i).getNombre() + listaRestaurantes.get(i).getLocalizacion()
-                    + listaRestaurantes.get(i).getHorario() + listaRestaurantes.get(i).getPuntuacion());
+            infoRestaurantes += i + " " + listaRestaurantes.get(i).getNombre() + " " +  listaRestaurantes.get(i).getLocalizacion()
+            + " " + listaRestaurantes.get(i).getHorario() + " " + listaRestaurantes.get(i).getPuntuacion() + "\n";
         }
+        JOptionPane.showInputDialog(infoRestaurantes);
     }
 
-    public static void eliminarRestaurante(int index) {
+    public static void eliminarRestaurante() {
         mostrarRestaurantes();
         String indexString = JOptionPane.showInputDialog("Que restaurante quieres eliminar? Escribe su nº");
-        index = Integer.parseInt(indexString);
+        int index = Integer.parseInt(indexString);
         listaRestaurantes.remove(index);
     }
 }
