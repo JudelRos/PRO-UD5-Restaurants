@@ -48,6 +48,9 @@ public class Restaurante {
         this.puntuacion = puntuacion;
     }
 
-        List<Restaurante> listaRestaurantes = new ArrayList<>();
+    List<Restaurante> listaRestaurantes = new ArrayList<>();
 
+    public String getInfo() {
+        return this.getNombre() + " " + this.getLocalizacion() + " " + this.getHorario() + " " + this.getPuntuacion() + "\n";
+    }
 }
