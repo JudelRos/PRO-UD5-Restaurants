@@ -1,6 +1,5 @@
 
 import net.Menu;
-import net.restaurantes.Restaurante;
 
 public class App {
 
