@@ -3,6 +3,10 @@ package net.restaurantes;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The `Restaurante` class represents a restaurant with properties such as name, location, schedule,
+ * and rating, and provides a method to get concatenated information about the restaurant.
+ */
 public class Restaurante {
     private String nombre;
     private String localizacion;
@@ -50,6 +54,14 @@ public class Restaurante {
 
     List<Restaurante> listaRestaurantes = new ArrayList<>();
 
+    /**
+     * The `getInfo` function returns a concatenated string of the object's name, location, schedule,
+     * and rating followed by a newline character.
+     * 
+     * @return The `getInfo()` method is returning a concatenated string that includes the name,
+     * location, operating hours, and rating of an entity, separated by spaces and ending with a
+     * newline character.
+     */
     public String getInfo() {
         return this.getNombre() + " " + this.getLocalizacion() + " " + this.getHorario() + " " + this.getPuntuacion() + "\n";
     }

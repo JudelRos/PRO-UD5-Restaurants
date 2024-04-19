@@ -9,7 +9,16 @@ import javax.swing.JOptionPane;
 
 import net.restaurantes.Restaurante;
 
+/**
+ * The `Menu` class in Java provides functionality to manage a list of restaurants, including adding,
+ * editing, displaying, and deleting restaurant information through user input dialogs.
+ */
 public class Menu {
+    // The line `private static ArrayList<Restaurante> listaRestaurantes = new
+    // ArrayList<Restaurante>();` is declaring a private static ArrayList variable named
+    // `listaRestaurantes` that will store objects of type `Restaurante`. It initializes this ArrayList
+    // with a new empty ArrayList of `Restaurante` objects. This variable will be used to store a list
+    // of restaurants in the program.
     private static ArrayList<Restaurante> listaRestaurantes = new ArrayList<Restaurante>();
     private static final String MENU = """
                 1.- Añadir restaurante
